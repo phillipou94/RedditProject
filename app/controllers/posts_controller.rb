@@ -1,10 +1,17 @@
-class PostController < ApplicationController
+class PostsController < ApplicationController
   def new
   	@post = Post.new 
   end
 
   def create
   	@post = Post.new(post_params)
+    #for testing only
+    #@post.user_id=1
+    if(@post.save)
+      redirect_to root_path
+    else 
+      render new
+    end
   end
 
   private
