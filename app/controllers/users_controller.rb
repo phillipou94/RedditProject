@@ -15,6 +15,8 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @post = @user.post
+    #@posts = Post.where("user_id = ?", params[:id]) #return all posts with user_id params[:id] into array
   end
 
 

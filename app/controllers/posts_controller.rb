@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def create
   	@post = Post.new(post_params)
     #for testing only
-    #@post.user_id=1
+    @post.user_id=1
     if(@post.save)
       redirect_to root_path
     else 
