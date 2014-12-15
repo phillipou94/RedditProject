@@ -17,9 +17,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    #@comment = Comment.find([post_id: params[:id]])
+    @comment =Comment.where("post = ?", params[:id])
+    
+
+  end
+
   private
   def post_params
-  	params.require(:post).permit(:body,:link, :title)
+  	params.require(:post).permit(:body, :title)
   end
 
 

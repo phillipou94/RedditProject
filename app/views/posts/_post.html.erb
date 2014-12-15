@@ -1,5 +1,19 @@
 
 <div id = "post-<%=post.id%>" class="list-group-item">
-	<p><a href= "<%= post.link %>"> <%=post.title %> </a></p>
+	<% if post.link.nil? %>
+		<p><%= link_to  post.title,post_path(post.id) %></p>
+
+	<% else %>
+		<p><a href= "<%= post.link %>"> <%=post.title %> </a></p>
+	<% end %>
 	<%=post.body%>
+	<%= link_to upvote_path(post.id), remote: true, method: :post do %>
+		<button type="upvote">Ou!</button>
+	<% end %>
+
+	<%= link_to downvote_path(post.id), remote: true, method: :post do %>
+		<button type="downvote">Drew!</button>
+	<p><%= link_to  "comments",post_path(post.id) %></p>
+	<% end %>
+
 </div>

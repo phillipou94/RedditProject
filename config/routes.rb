@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'votes/new'
+
   get 'sessions/new'
 
   root 'static_pages#home'
@@ -9,6 +11,11 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+  post 'post/:post_id/upvote' => 'votes#upvote', as: :upvote
+  post 'post/:post_id/downvote' => 'votes#downvote', as: :downvote  #as: :what_path_is_called in rake routes
+
+  post 'post/:id/comment' => 'comments#create', as: :comments
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

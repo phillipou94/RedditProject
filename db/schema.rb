@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214230626) do
+ActiveRecord::Schema.define(version: 20141215194016) do
+
+  create_table "comments", force: true do |t|
+    t.string   "post"
+    t.string   "references"
+    t.string   "user"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: true do |t|
     t.text     "body"
@@ -28,7 +37,6 @@ ActiveRecord::Schema.define(version: 20141214230626) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "password_hash"
     t.integer  "karma"
     t.boolean  "is_admin"
     t.integer  "user_id"
@@ -37,5 +45,16 @@ ActiveRecord::Schema.define(version: 20141214230626) do
     t.string   "password_digest"
     t.string   "remember_digest"
   end
+
+  create_table "votes", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "is_upvote"
+  end
+
+  add_index "votes", ["post_id"], name: "index_votes_on_post_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

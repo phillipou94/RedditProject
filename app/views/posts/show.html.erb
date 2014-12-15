@@ -1,0 +1,15 @@
+<% provide(:title, @post.title) %>
+<h1>
+	<%= @post.title %>
+</h1>
+	<%= @post.body %>
+	<% if @comment.any? %>
+		<%= render @comment %>
+	<%end%>
+	<% if logged_in? %>
+		<%= form_for(Comment.new) do |f| %>
+      		<%= f.label :body %>
+      		<%= f.text_field :body %>	<!--#form for comment (and the text they're entering is forbody)-->
+      		<%= f.submit "Comment This Shit" %>
+      	<% end %>
+    <% end %>
