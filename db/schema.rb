@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141214230626) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "password_hash"
     t.integer  "karma"
     t.boolean  "is_admin"
     t.integer  "user_id"
