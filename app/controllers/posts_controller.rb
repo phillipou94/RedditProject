@@ -7,7 +7,9 @@ class PostsController < ApplicationController
   def create
   	@post = Post.new(post_params)
     #for testing only
-    @post.user_id=1
+    if logged_in?
+      @post.user_id= session[:user_id]
+    end 
     if(@post.save)
       redirect_to root_path
     else

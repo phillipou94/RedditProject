@@ -10,5 +10,7 @@
 	<%end%>
 	<% if !logged_in? %>
 		<a href="./users/new">Sign Up Now (Bitch!)</a>
+	<% else %>
+		<%= link_to "Post Now", new_post_path %>
 	<% end %>
 </div>
