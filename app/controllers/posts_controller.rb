@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def new
-  	@post = Post.new 
+    redirect_to root_path if !logged_in?
+  	@post = Post.new
   end
 
   def create
@@ -9,7 +10,7 @@ class PostsController < ApplicationController
     @post.user_id=1
     if(@post.save)
       redirect_to root_path
-    else 
+    else
       render new
     end
   end
