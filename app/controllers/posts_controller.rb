@@ -14,13 +14,14 @@ class PostsController < ApplicationController
       redirect_to root_path
     else
       render new
+      flash[:danger] = "Please Make a Valid Post"
     end
   end
 
   def show
     @post = Post.find(params[:id])
     #@comment = Comment.find([post_id: params[:id]])
-    @comment =Comment.where("post = ?", params[:id])
+    @comment =Comment.where("post_id = ?", params[:id])
     
 
   end

@@ -2,7 +2,6 @@
 <div id = "post-<%=post.id%>" class="list-group-item">
 	<% if post.link.nil? %>
 		<p><%= link_to  post.title,post_path(post.id) %></p>
-
 	<% else %>
 		<p><a href= "<%= post.link %>"> <%=post.title %> </a></p>
 	<% end %>
@@ -16,5 +15,6 @@
 		<button type="downvote">Drew!</button>
 	<p><%= link_to  "comments",post_path(post.id) %></p>
 	<% end %>
+	<%= post.karma %>
 
 </div>

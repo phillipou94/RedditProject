@@ -13,6 +13,7 @@ class VotesController < ApplicationController
   def upvote
   	if !logged_in?
   		redirect_to login_path
+      flash[:danger]="Please sign in to vote"
   	else	#create vote
   		@vote = Vote.new
   		@vote.post = Post.find(params[:post_id])
@@ -25,6 +26,7 @@ class VotesController < ApplicationController
   def downvote
   	if !logged_in?
   		redirect_to login_path
+      flash[:danger]="Please sign in to vote"
   	else	#create vote
   		@vote = Vote.new
   		@vote.post = Post.find(params[:post_id])
