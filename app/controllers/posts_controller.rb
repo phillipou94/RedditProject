@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     #for testing only
     if logged_in?
       @post.user_id= session[:user_id]
-    end 
+    end
     if(@post.save)
       redirect_to root_path
     else
@@ -21,8 +21,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     #@comment = Comment.find([post_id: params[:id]])
-    @comment =Comment.where("post_id = ?", params[:id])
-    
+    @comment = Comment.includes(:user).where("post_id = ?", params[:id])
+
 
   end
 
