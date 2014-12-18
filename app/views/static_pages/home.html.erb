@@ -1,11 +1,12 @@
 <% provide(:title, "Home") %>
 <div class = "center jumbotron">
 	<h1>OuDrew </h1>
-	<p>Find me in app/views/static_pages/home.html.erb</p>
-	<% if @post.any? %>
-		<%= @post.length %>
+	<%= image_tag("friendship.jpg", :width => 100, :height => 150, :crop => :fill)%>
+	<p>I know what they're building....friendship </p>
+	<% if @posts.any? %>
+		<%= @posts.length %>
 		<div class="class: list-group">
-			<%= render @post %>
+			<%= render @posts %>
 		</div>
 	<%end%>
 	<% if !logged_in? %>

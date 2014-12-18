@@ -20,6 +20,10 @@ class VotesController < ApplicationController
   		@vote.user = User.find(session[:user_id])
   		@vote.is_upvote=true
   		@vote.save
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.js
+      end
   	end 
   end 
 
@@ -33,6 +37,10 @@ class VotesController < ApplicationController
   		@vote.user = User.find(session[:user_id])
   		@vote.is_upvote=false
   		@vote.save
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.js
+      end
   	end 
   end 
 

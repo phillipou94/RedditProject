@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    @post = Post.take(10)
+    @posts = Post.take(100)
   end
 end

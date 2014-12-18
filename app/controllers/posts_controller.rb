@@ -22,13 +22,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     #@comment = Comment.find([post_id: params[:id]])
     @comment = Comment.includes(:user).where("post_id = ?", params[:id])
-
-
   end
 
   private
   def post_params
-  	params.require(:post).permit(:body, :title)
+  	params.require(:post).permit(:body, :title, :link)
   end
 
 
