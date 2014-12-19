@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216192255) do
+ActiveRecord::Schema.define(version: 20141219032515) do
 
   create_table "comments", force: true do |t|
     t.string   "references"
@@ -28,16 +28,22 @@ ActiveRecord::Schema.define(version: 20141216192255) do
     t.string   "integer"
     t.string   "image"
     t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "title"
     t.integer  "user_id"
+    t.string   "sub_reddit_id"
+  end
+
+  create_table "sub_reddits", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "password_hash"
     t.integer  "karma"
     t.boolean  "is_admin"
     t.integer  "user_id"

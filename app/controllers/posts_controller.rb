@@ -9,6 +9,9 @@ class PostsController < ApplicationController
     #for testing only
     if logged_in?
       @post.user_id= session[:user_id]
+      
+      @post.sub_reddit_id = 1
+
     end
     if(@post.save)
       redirect_to root_path

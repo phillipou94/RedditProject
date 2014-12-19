@@ -1,0 +1,12 @@
+<% provide(:title, 'Sub Reddits') %>
+<h1>All Subreddits</h1>
+
+<ul>
+  <% @all_pages.each do |page| %>
+    <li>
+      <%= link_to page.name, page %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create SubReddit",  new_sub_reddit_path %>

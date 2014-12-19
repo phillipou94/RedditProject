@@ -1,0 +1,11 @@
+<% provide(:title, 'New Subreddit') %>
+
+<h1>New Subredit</h1>
+
+    <%= form_for(SubReddit.new) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.submit "Create" %>
+
+    <% end %>

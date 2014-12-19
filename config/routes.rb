@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :posts
+  resources :sub_reddits
+  
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
