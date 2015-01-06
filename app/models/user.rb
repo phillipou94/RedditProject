@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
 	has_many :post
 	has_many :vote
 	has_many :comments
+	has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+
+
+
 	before_save { self.email = email.downcase }
 	validates :name, presence: true, length: {maximum:50}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -34,6 +40,23 @@ class User < ActiveRecord::Base
 	def forget 
 		update_attribute(:remember_digest,nil)
 	end
+
+
+	# Follows a subreddit.
+  	def follow(sub_reddit)
+    	active_relationships.create(followed_id: sub_reddit.id)
+  	end
+
+  # Unfollows a sub_reddit.
+  	def unfollow(sub_reddit)
+    	active_relationships.find_by(followed_id: sub_reddit.id).destroy
+  	end
+
+  # Returns true if the current user is following the subreddit.
+  	def following?(sub_reddit)
+    	#active_relationships.following.include?(sub_reddit)
+    	active_relationships.exists?(:followed_id => sub_reddit.id)
+  	end
 
 
 end

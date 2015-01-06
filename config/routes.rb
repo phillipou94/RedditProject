@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :sub_reddits
+  resources :relationships,       only: [:create, :destroy]
   
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -16,8 +17,21 @@ Rails.application.routes.draw do
 
   post 'post/:post_id/upvote' => 'votes#upvote', as: :upvote
   post 'post/:post_id/downvote' => 'votes#downvote', as: :downvote  #as: :what_path_is_called in rake routes
-
   post 'post/:id/comment' => 'comments#create', as: :comments
+
+  resources :users do
+    member do
+      get :following
+    end
+  end
+
+  resources :sub_reddits do
+    member do
+      get :followers
+    end
+  end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
